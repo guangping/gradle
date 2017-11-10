@@ -1,0 +1,8 @@
+ext {
+    redissonVersion = '3.5.5'
+}
+
+
+dependencies{
+    compile("org.redisson:redisson:${redissonVersion}")
+}

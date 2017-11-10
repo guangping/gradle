@@ -1,0 +1,8 @@
+/**common*/
+include 'common','common:common-core','common:common-dao','common:common-web','common:common-cache'
+
+
+/*web*/
+include 'web','web:web-ui','web:web-app'
+
+

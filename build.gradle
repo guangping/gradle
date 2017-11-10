@@ -1,0 +1,60 @@
+allprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+
+    version = '0.0.1'
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+}
+
+subprojects {
+    [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+    ext {
+        fastJsonVersion = '1.2.40'
+        commonsLang3Version = '3.7'
+        springVersion = '4.3.12.RELEASE'
+        guavaVersion = '22.0'
+
+        log4jVersion = '2.8.2'
+        disruptorVersion = '3.3.6'
+
+        testngVersion = '6.11'
+    }
+    repositories {
+        /*     maven {
+                 url  'http://maven.aliyun.com/nexus/content/repositories'
+             }*/
+        mavenLocal()
+        mavenCentral()
+    }
+
+    dependencies {
+        compile("com.alibaba:fastjson:${fastJsonVersion}")
+        compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
+        compile("com.google.guava:guava:${guavaVersion}")
+
+        /*日志 log4j2*/
+        compile(
+                "org.apache.logging.log4j:log4j-api:${log4jVersion}",
+                "org.apache.logging.log4j:log4j-core:${log4jVersion}",
+                /*其他日志转换*/
+                "org.apache.logging.log4j:log4j-1.2-api:${log4jVersion}",
+                "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}",
+                "org.apache.logging.log4j:log4j-jcl:${log4jVersion}",
+                /*nosql*/
+                "org.apache.logging.log4j:log4j-nosql:${log4jVersion}",
+                /*web*/
+                "org.apache.logging.log4j:log4j-web:${log4jVersion}",
+                /*异步*/
+                "com.lmax:disruptor:${disruptorVersion}"
+        )
+
+        testCompile("org.testng:testng:${testngVersion}")
+    }
+}
+
+group = 'io.lance.gradle'
+
+

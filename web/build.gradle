@@ -1,0 +1,4 @@
+archivesBaseName = 'web'
+
+group = 'io.lance.gradle.web'
+version = '0.0.1'

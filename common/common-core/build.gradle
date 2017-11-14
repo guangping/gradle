@@ -1,7 +1,8 @@
 
 
-version = '0.0.1'
+
 
 dependencies{
     compile("org.springframework:spring-context:${springVersion}")
+    compile("commons-codec:commons-codec:${commonsCodecVersion}")
 }

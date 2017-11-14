@@ -1,3 +1,4 @@
 archivesBaseName = 'common'
 
 group = 'io.lance.gradle.common'
+version = '0.0.1'

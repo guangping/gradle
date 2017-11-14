@@ -10,13 +10,25 @@ buildscript {
     }
 }
 
+
+
 apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     compile('org.springframework.boot:spring-boot-starter-undertow')
+    /*依赖工程*/
     compile project(':common:common-core')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+/*多环境打包*/
+def env = System.getProperty("profile") ?: "dev"
+sourceSets {
+    main {
+        resources {
+            srcDirs = ["src/main/resources/public", "src/main/resources/$env"]
+        }
+    }
 }
 

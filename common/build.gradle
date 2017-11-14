@@ -1,2 +1,3 @@
+archivesBaseName = 'common'
 
 group = 'io.lance.gradle.common'

@@ -1,8 +1,28 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'org.springframework.boot'
+
+archivesBaseName = 'common-dao'
+
+bootRepackage{
+    enabled = false
+}
+
 ext {
     druidVersion = '1.1.5'
 }
 version = '0.0.2'
 
 dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1')
+    compile project(":common:common-core")
+
     compile("com.alibaba:druid:${druidVersion}")
 }

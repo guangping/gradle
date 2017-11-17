@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J2" />
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>
+    </settings>
+    
+    <plugins>
+        <plugin interceptor="io.lance.gradle.common.dao.mybatis.interceptor.MyBatisInterceptor">
+            <property name="test" value="test"/>
+            <property name="pageSqlId" value=""/>
+        </plugin>
+    </plugins>
+</configuration>

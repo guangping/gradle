@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 
 @EnableAsync
-@SpringBootApplication(scanBasePackages = {"io.lance.gradle.common.*"})
+@SpringBootApplication(scanBasePackages = {"io.lance.gradle.common.*","io.lance.gradle.api.*"})
 public class GradleApplication {
 
 	public static void main(String[] args) {

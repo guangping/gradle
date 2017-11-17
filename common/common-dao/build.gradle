@@ -22,11 +22,9 @@ ext {
 version = '0.0.2'
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
     compile("org.mybatis.spring.boot:mybatis-spring-boot-starter:${mybatisSpringBottVersion}")
     compile project(":common:common-core")
-
-
+    
     compile("com.alibaba:druid:${druidVersion}")
     compile("mysql:mysql-connector-java:${mysqlConnectorVersion}")
 }

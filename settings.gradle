@@ -5,4 +5,7 @@ include 'common','common:common-core','common:common-dao','common:common-web','c
 /*web*/
 include 'web','web:web-ui','web:web-app'
 
+/*api*/
+include 'api','api:api-test'
+
 

@@ -8,16 +8,15 @@ buildscript {
 }
 apply plugin: 'org.springframework.boot'
 
-archivesBaseName = 'common-web'
+archivesBaseName = 'api-test'
 
-bootRepackage {
+bootRepackage{
     enabled = false
 }
 
 
-dependencies {
+dependencies{
     compile('org.springframework.boot:spring-boot-starter-web')
-    compile('org.springframework.boot:spring-boot-starter-freemarker')
     /*依赖工程*/
     compile project(':common:common-core')
 }

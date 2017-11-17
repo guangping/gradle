@@ -17,6 +17,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-undertow')
     /*依赖工程*/
     compile project(':common:common-web')
+    compile project(':api:api-test')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

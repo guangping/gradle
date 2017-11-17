@@ -1,7 +1,4 @@
 buildscript {
-    ext {
-        springBootVersion = '1.5.8.RELEASE'
-    }
     repositories {
         mavenCentral()
     }
@@ -16,9 +13,10 @@ apply plugin: 'org.springframework.boot'
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-freemarker')
     compile('org.springframework.boot:spring-boot-starter-undertow')
     /*依赖工程*/
-    compile project(':common:common-core')
+    compile project(':common:common-web')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }

@@ -19,6 +19,7 @@ subprojects {
         log4jVersion = '2.8.2'
         disruptorVersion = '3.3.6'
 
+        springBootVersion = '1.5.8.RELEASE'
 
         testngVersion = '6.11'
     }
@@ -52,7 +53,7 @@ subprojects {
                 "org.apache.logging.log4j:log4j-core:${log4jVersion}",
                 /*其他日志转换*/
                 "org.apache.logging.log4j:log4j-1.2-api:${log4jVersion}",
-                "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}",
+            /*    "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}",*/
                 "org.apache.logging.log4j:log4j-jcl:${log4jVersion}",
                 /*nosql*/
                 "org.apache.logging.log4j:log4j-nosql:${log4jVersion}",
@@ -63,11 +64,6 @@ subprojects {
         )
 
         testCompile("org.testng:testng:${testngVersion}")
-    }
-
-    // 显示当前项目下所有用于 compile 的 jar.
-    task listJars(description: 'Display all compile jars.') << {
-        configurations.compile.each { File file -> println file.name }
     }
 }
 

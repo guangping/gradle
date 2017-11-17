@@ -28,10 +28,10 @@ public class CommonErrorController implements ErrorController {
     @RequestMapping(produces = "text/html")
     public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
         ModelAndView view = new ModelAndView();
-        view.setViewName("error/errorPage");
+        view.setViewName(ExceptionPage.DEFAULT_PAGE);
         int statusCode = response.getStatus();
         if (Constants.STATUS_CODE_404 == statusCode) {
-            view.setViewName("error/404");
+            view.setViewName(ExceptionPage.PAGE_404);
         }
         return view;
     }

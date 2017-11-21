@@ -1,8 +1,30 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'org.springframework.boot'
+
+archivesBaseName = 'common-cache'
+version ='0.0.1'
+
+bootRepackage {
+    enabled = false
+}
+
 ext {
     redissonVersion = '3.5.5'
 }
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
 
-
-dependencies{
     compile("org.redisson:redisson:${redissonVersion}")
+    /*依赖工程*/
+    compile project(':common:common-core')
 }
+
+
+

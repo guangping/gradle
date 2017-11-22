@@ -2,6 +2,8 @@ package io.lance.gradle.common.cache.redis;
 
 import com.alibaba.fastjson.TypeReference;
 import io.lance.gradle.common.cache.ICache;
+import io.lance.gradle.common.core.util.JsonUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.redisson.api.RAtomicLong;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
@@ -34,6 +36,7 @@ public class RedisCache implements ICache {
         bucket.setAsync(value, expire, TimeUnit.MILLISECONDS);
     }
 
+
     @Override
     public String get(String key) {
         RBucket<String> bucket = this.client.getBucket(key);
@@ -43,13 +46,13 @@ public class RedisCache implements ICache {
     @Override
     public void del(String key) {
         RBucket<String> bucket = this.client.getBucket(key);
-        bucket.deleteAsync();
+        bucket.delete();
     }
 
     @Override
     public long incr(String key) {
         RAtomicLong atomicLong = this.client.getAtomicLong(key);
-        long value = atomicLong.get();
+        long value = atomicLong.getAndIncrement();
         return value;
     }
 
@@ -61,27 +64,36 @@ public class RedisCache implements ICache {
     }
 
     @Override
-    public long incr(String key, long by, long def) {
-        return 0;
-    }
-
-    @Override
     public <T> T getObj(String key, Class<T> clazz) {
-        return null;
+        if (null == clazz) {
+            return null;
+        }
+        String value = this.get(key);
+        if (StringUtils.isBlank(value)) {
+            return null;
+        }
+        String className = clazz.getName();
+        if (className.equals("java.util.List")) {
+            return JsonUtils.parseObject(value, new TypeReference<T>() {
+            });
+        } else if (className.equals("java.lang.String")) {
+            return (T) value;
+        } else {
+            return JsonUtils.parseObject(value, clazz);
+        }
     }
 
     @Override
     public <T> T getObj(String key, TypeReference<T> type) {
-        return null;
-    }
+        if (null == type) {
+            return null;
+        }
 
-    @Override
-    public void set(String key, Object value) {
-
-    }
-
-    @Override
-    public void set(String key, Object value, int expire) {
-
+        String value = this.get(key);
+        if (StringUtils.isBlank(value)) {
+            return null;
+        }
+        return JsonUtils.parseObject(value, new TypeReference<T>() {
+        });
     }
 }

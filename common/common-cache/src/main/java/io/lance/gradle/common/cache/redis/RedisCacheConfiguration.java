@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
+import org.redisson.config.SingleServerConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,12 +30,16 @@ public class RedisCacheConfiguration {
         logger.info("redis配置初始化....");
         //TODO 获取redis配置信息
 
+        String ip = "127.0.0.1";
+        String port = "6379";
         //默认单例模式  可支持集群模式、集群模式、主从模式
-        Config config = new Config();
-        config.useSingleServer().setAddress("localhost:6379");
+        Config config = new Config();//host:port
+        SingleServerConfig serverConfig = config.useSingleServer();
+        serverConfig.setAddress("redis://"+ip + ":" + port);
+
         RedissonClient client = Redisson.create(config);
-        String result=client.getConfig().toJSON().toString();
-        logger.info("redis初始化结果:{}",result);
+        String result = client.getConfig().toJSON().toString();
+        logger.info("redis初始化结果:{}", result);
         return client;
     }
 }

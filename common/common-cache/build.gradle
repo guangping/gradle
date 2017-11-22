@@ -24,6 +24,8 @@ dependencies {
     compile("org.redisson:redisson:${redissonVersion}")
     /*依赖工程*/
     compile project(':common:common-core')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 

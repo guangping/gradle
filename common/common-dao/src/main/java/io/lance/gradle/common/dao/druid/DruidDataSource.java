@@ -1,7 +1,7 @@
 package io.lance.gradle.common.dao.druid;
 
 
-import io.lance.gradle.common.dao.config.DruidDBConfig;
+import io.lance.gradle.common.dao.druid.config.DruidDBConfig;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

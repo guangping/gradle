@@ -1,4 +1,4 @@
-package io.lance.gradle.common.dao.config;
+package io.lance.gradle.common.dao.druid.config;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,9 +44,7 @@ public class DruidDBConfig {
 
     private boolean testOnReturn;
 
-
     private boolean poolPreparedStatements;
-
 
     private int maxPoolPreparedStatementPerConnectionSize;
 

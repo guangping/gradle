@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration status="info" packages="com.ebidding.qycg.module.common.log4j">
+    <Properties>
+        <!--${web:rootDir} 工程目录 ${sys:catalina.home} tomcat目录-->
+        <property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %c:%L - %m%n</property>
+        <property name="LOG_DIR">../logs/</property>
+        <property name="ROLLING_FILE_DEBUG_MSG">${LOG_DIR}/gradle_%d{yyyyMMdd}-%i.log.gz</property>
+        <property name="DEBUG_MSG">${LOG_DIR}/gradle.log</property>
+        <property name="FILE_SIZE">50 MB</property>
+        <property name="CHARSET">UTF-8</property>
+    </Properties>
+    <Appenders>
+        <Console name="stdout" target="SYSTEM_OUT">
+            <!-- 输出日志的格式 -->
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingRandomAccessFile name="debug" fileName="${DEBUG_MSG}" filePattern="${ROLLING_FILE_DEBUG_MSG}">
+            <PatternLayout charset="${CHARSET}" pattern="${LOG_PATTERN}"/>
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="${FILE_SIZE}"/>
+            </Policies>
+            <DefaultRolloverStrategy max="20"/>
+        </RollingRandomAccessFile>
+    </Appenders>
+
+    <Loggers>
+        <logger name="org.springframework" level="debug" additivity="false">
+            <AppenderRef ref="stdout"/>
+        </logger>
+        <logger name="org.apache.ibatis" level="debug" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="debug"/>
+        </logger>
+        <logger name="io.lance.gradle" level="info" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="debug"/>
+        </logger>
+        <logger name="io.lance.gradle.common.dao.modules" level="debug" additivity="false">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="debug"/>
+        </logger>
+        <root level="info">
+            <AppenderRef ref="stdout"/>
+            <AppenderRef ref="debug"/>
+        </root>
+    </Loggers>
+
+</configuration>

@@ -2,7 +2,7 @@
 spring:
 #数据库配置
   datasource:
-    name:
+    name: common-dao
     url:
     username: ebs
     password: ebs
@@ -11,22 +11,19 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     #druid相关配置
     filters: stat
-    maxActive: 20
-    initialSize: 5
-    maxWait: 60000
-    minIdle: 1
-    timeBetweenEvictionRunsMillis: 60000
-    minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
+    maxActive: 15
+    initialSize: 3
+    maxWait: 5000
+    minIdle: 3
+    timeBetweenEvictionRunsMillis: 90000
+    minEvictableIdleTimeMillis: 1800000
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
 
 
 mybatis:
   config-location: classpath:mybatis-conf.xml
-  mapperLocations: classpath*:mapper/**/*.xml
-  type-aliases-package:
   check-config-location: true
+  mapper-locations: classpath*:mapper/*/*.xml
+  type-aliases-package: io.lance.gradle.common.dao.modules.**.mapper
+  base-package: io.lance.gradle.common.dao.modules.**.mapper

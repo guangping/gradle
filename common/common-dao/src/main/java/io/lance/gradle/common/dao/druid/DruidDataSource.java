@@ -44,12 +44,13 @@ public class DruidDataSource {
         datasource.setMaxWait(this.druidDBConfig.getMaxWait());
         datasource.setTimeBetweenEvictionRunsMillis(this.druidDBConfig.getTimeBetweenEvictionRunsMillis());
         datasource.setMinEvictableIdleTimeMillis(this.druidDBConfig.getMinEvictableIdleTimeMillis());
-        datasource.setValidationQuery(this.druidDBConfig.getValidationQuery());
-        datasource.setTestWhileIdle(this.druidDBConfig.isTestWhileIdle());
-        datasource.setTestOnBorrow(this.druidDBConfig.isTestOnBorrow());
-        datasource.setTestOnReturn(this.druidDBConfig.isTestOnReturn());
         datasource.setPoolPreparedStatements(this.druidDBConfig.isPoolPreparedStatements());
         datasource.setMaxPoolPreparedStatementPerConnectionSize(this.druidDBConfig.getMaxPoolPreparedStatementPerConnectionSize());
+        //使用默认配置
+        /*   datasource.setValidationQuery(this.druidDBConfig.getValidationQuery());
+        datasource.setTestWhileIdle(this.druidDBConfig.isTestWhileIdle());
+        datasource.setTestOnBorrow(this.druidDBConfig.isTestOnBorrow());
+        datasource.setTestOnReturn(this.druidDBConfig.isTestOnReturn());*/
         try {
             datasource.setFilters(this.druidDBConfig.getFilters());
         } catch (SQLException e) {

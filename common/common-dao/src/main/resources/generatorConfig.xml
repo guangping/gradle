@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- 此处指定生成针对MyBatis3的DAO -->
+    <context id="context1" targetRuntime="MyBatis3" defaultModelType="flat">
+        <!-- jdbc连接信息 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://devdb.zcjb.com.cn:3306/test?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true"
+                        userId="ebs" password="ebs"/>
+
+        <!-- 生成vo对象 -->
+        <javaModelGenerator targetPackage="io.lance.gradle.common.dao.modules.sys.entity" targetProject="./temp"/>
+        <!-- 生成用于查询的Example对象 -->
+        <sqlMapGenerator targetPackage="io.lance.gradle.common.dao.modules.sys.mapper" targetProject="./temp"/>
+        <!-- 生成DAO的类文件以及配置文件 -->
+        <javaClientGenerator targetPackage="io.lance.gradle.common.dao.modules.sys.mapper" targetProject="./temp" type="XMLMAPPER"/>
+
+        <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象-->
+
+        <table tableName="sys_config" domainObjectName="SysConfig" enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+
+    </context>
+</generatorConfiguration>

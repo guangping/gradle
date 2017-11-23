@@ -18,17 +18,17 @@ alter table table_name
 
 
 /**基础配置表*/
-create table sys_config (
-	id int (11) auto_increment,
-	config_name varchar (256) comment '参数名称',
-	config_key varchar (256) not null comment 'key值',
-	config_value varchar (1024) comment '数据值',
-	is_deleted varchar(2) not null default '0' comment '是否删除 0 正常 1 删除',
-	create_time datetime not null default  current_timestamp  comment '创建时间',
-	update_time datetime not NULL default current_timestamp on update current_timestamp comment '操作时间',
-	primary key (id),
+CREATE TABLE sys_config (
+  id INT (11) AUTO_INCREMENT,
+  config_name VARCHAR (128) COMMENT '参数名称',
+  config_key VARCHAR (64) NOT NULL COMMENT 'key值',
+  config_value VARCHAR (1024) COMMENT '数据值',
+  is_deleted VARCHAR(2) NOT NULL DEFAULT '0' COMMENT '是否删除 0 正常 1 删除',
+  create_time DATETIME NOT NULL DEFAULT  CURRENT_TIMESTAMP  COMMENT '创建时间',
+  update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '操作时间',
+  PRIMARY KEY (id),
   UNIQUE (config_key)
-) engine=innodb default charset=utf8 COMMENT '基础配置表';
+) ENGINE=INNODB DEFAULT CHARSET=utf8 COMMENT '基础配置表';
 
 
 /**值集**/

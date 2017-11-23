@@ -2,6 +2,7 @@ package io.lance.gradle.common.core.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -17,7 +18,7 @@ public class JsonUtils {
      * @time: 2017-09-15 10:19:44
      */
     public static String toJSONString(Object data) {
-        return JSONObject.toJSONString(data);
+        return JSONObject.toJSONStringWithDateFormat(data, Constants.DATETIME_FORMAT_SS);
     }
 
     /**

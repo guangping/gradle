@@ -24,7 +24,9 @@ public interface Constants {
     /**
      * 时间格式化格式
      **/
-    String DATETIME_FORMAT = "yyyy-MM-dd HH:mm";
+    String DATETIME_FORMAT_MM = "yyyy-MM-dd HH:mm";
+
+    String DATETIME_FORMAT_SS = "yyyy-MM-dd HH:mm:ss";
 
     String TIME_FORMAT = "HH:mm:ss";
     /**

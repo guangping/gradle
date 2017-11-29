@@ -25,4 +25,5 @@
 .idea/
 .gradle/
 **/target/*
+**/out/*
 

@@ -8,6 +8,7 @@ import org.apache.commons.mail.HtmlEmail;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
 import java.util.List;
@@ -17,6 +18,7 @@ import java.util.List;
  * @time: 2017-11-29 16:06
  * @desc: 邮件发送
  */
+@Service
 public class EmailService {
 
     private static final Logger logger = LogManager.getLogger();

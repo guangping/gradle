@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'org.springframework.boot'
+
+
+archivesBaseName = 'common-email'
+
+bootRepackage {
+    enabled = false
+}
+
+ext {
+    mailVersion = '1.4.7'
+    commonsEmailVersion = '1.5'
+}
+
+version = '0.0.1'
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    compile("javax.mail:mail:${mailVersion}")
+    compile("org.apache.commons:commons-email:${commonsEmailVersion}")
+    compile project(":common:common-core")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

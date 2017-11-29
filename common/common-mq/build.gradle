@@ -1,0 +1,17 @@
+
+archivesBaseName = 'common-mq'
+
+
+
+ext {
+    jmsVersion = '1.1'
+}
+
+version = '0.0.1'
+
+dependencies {
+    compile("javax.jms:jms:${jmsVersion}")
+    compile project(":common:common-core")
+
+
+}

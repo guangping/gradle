@@ -45,10 +45,12 @@ public class FreemarkerUtils {
      */
     public static void createFile(String template, Map param, File outFile) throws TemplateException, IOException {
         if (null != outFile) {
-            if (!outFile.getParentFile().exists())
+            if (!outFile.getParentFile().exists()) {
                 outFile.getParentFile().mkdirs();
-            if (!outFile.exists())
+            }
+            if (!outFile.exists()) {
                 outFile.createNewFile();
+            }
         }
         String templateName = "templateName";
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_26);

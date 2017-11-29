@@ -1,0 +1,6 @@
+email:
+  host: smtp.exmail.qq.com
+  port: 25
+  user-name: service@ebidding.com.cn
+  password: rbp4G97rFeDdo5nZ
+  from: service@ebidding.com.cn

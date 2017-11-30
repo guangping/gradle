@@ -35,7 +35,11 @@ public class EmailService {
      * @author lance
      * @time: 2017-11-29 16:14:54
      */
-    public void sendMail(String title, String content, List<EmailReceive> receiveList) {
+    public void sendMail(String title, String content, EmailReceive ... receiveList) {
+        if(null==receiveList || receiveList.length==0){
+            logger.info("未设置收件人");
+            return;
+        }
         String hostName = this.emailConfig.getHost();
         int port = this.emailConfig.getPort();
         String userName = this.emailConfig.getUserName();

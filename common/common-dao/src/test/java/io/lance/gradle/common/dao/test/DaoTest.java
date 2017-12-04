@@ -37,7 +37,7 @@ public class DaoTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void queryListPage() {
-        PageRowBounds rowBounds = new PageRowBounds(1, 10);
+        PageRowBounds rowBounds = new PageRowBounds(10, 10);
         SysConfig sysConfig=new SysConfig();
         sysConfig.setConfigKey("url");
 

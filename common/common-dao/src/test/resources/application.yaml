@@ -3,7 +3,7 @@ spring:
 #数据库配置
   datasource:
     name: common-dao
-    url: 
+    url:
     username: ebs
     password: ebs
     driver-class-name: com.mysql.jdbc.Driver

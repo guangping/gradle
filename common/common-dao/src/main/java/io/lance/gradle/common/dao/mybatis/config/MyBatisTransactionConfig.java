@@ -39,6 +39,8 @@ public class MyBatisTransactionConfig implements TransactionManagementConfigurer
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(dataSource);
+        transactionManager.setDataSource(dataSource);
+
         return transactionManager;
     }
 

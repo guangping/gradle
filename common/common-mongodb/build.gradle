@@ -1,0 +1,22 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'org.springframework.boot'
+
+archivesBaseName = 'common-mongodb'
+
+bootRepackage {
+    enabled = false
+}
+
+dependencies {
+    compile ("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
+    compile project(":common:common-core")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

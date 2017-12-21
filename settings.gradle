@@ -1,7 +1,7 @@
 /**common*/
 include 'common','common:common-core','common:common-dao',
         'common:common-web','common:common-cache','common:common-email',
-        'common:common-mq'
+        'common:common-mq','common:common-mongodb'
 
 
 /*web*/

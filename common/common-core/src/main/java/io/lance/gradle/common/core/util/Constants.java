@@ -59,4 +59,10 @@ public interface Constants {
 
     int STATUS_CODE_500 = 500;
 
+
+    /**
+     * 来源
+     */
+    String REFERER = "referer";
+
 }

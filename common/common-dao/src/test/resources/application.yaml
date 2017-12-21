@@ -3,7 +3,7 @@ spring:
 #数据库配置
   datasource:
     name: common-dao
-    url: 
+    url: jdbc:mysql://devdb.zcjb.com.cn:3306/test?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
     username: ebs
     password: ebs
     driver-class-name: com.mysql.jdbc.Driver

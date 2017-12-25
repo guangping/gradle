@@ -4,6 +4,7 @@ import io.lance.gradle.common.core.util.JsonResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,7 @@ public class UploadController {
     /**
      * 文件上传
      */
+    @RequestMapping(value = "", method = RequestMethod.POST)
     public JsonResult upload(@RequestParam(value = "Filedata") MultipartFile file) {
         logger.info("文件上传.....");
 

@@ -12,9 +12,9 @@
         <result column="remark" jdbcType="VARCHAR" property="remark"/>
     </resultMap>
     <sql id="Base_Column_List">
-    id, config_name, config_key, config_value, is_deleted, create_time, update_time, 
-    remark
-  </sql>
+        id, config_name, config_key, config_value, is_deleted, create_time, update_time,
+        remark
+    </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -22,9 +22,9 @@
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_config
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+        delete from sys_config
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
     <insert id="insert" parameterType="io.lance.gradle.common.dao.modules.sys.entity.SysConfig">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
@@ -116,16 +116,16 @@
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="io.lance.gradle.common.dao.modules.sys.entity.SysConfig">
-    update sys_config
-    set config_name = #{configName,jdbcType=VARCHAR},
-      config_key = #{configKey,jdbcType=VARCHAR},
-      config_value = #{configValue,jdbcType=VARCHAR},
-      is_deleted = #{isDeleted,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+        update sys_config
+        set config_name = #{configName,jdbcType=VARCHAR},
+        config_key = #{configKey,jdbcType=VARCHAR},
+        config_value = #{configValue,jdbcType=VARCHAR},
+        is_deleted = #{isDeleted,jdbcType=VARCHAR},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        remark = #{remark,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 
     <select id="queryListPage" resultMap="BaseResultMap">
         select

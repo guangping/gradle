@@ -35,7 +35,7 @@ public class RedisCacheConfiguration {
         //默认单例模式  可支持集群模式、集群模式、主从模式
         Config config = new Config();//host:port
         SingleServerConfig serverConfig = config.useSingleServer();
-        serverConfig.setAddress("redis://"+ip + ":" + port);
+        serverConfig.setAddress("redis://" + ip + ":" + port);
 
         RedissonClient client = Redisson.create(config);
         String result = client.getConfig().toJSON().toString();

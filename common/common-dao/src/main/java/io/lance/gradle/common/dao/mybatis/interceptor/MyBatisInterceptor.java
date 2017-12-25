@@ -37,13 +37,13 @@ public class MyBatisInterceptor implements Interceptor {
             MappedStatement mappedStatement = (MappedStatement) ReflectHelper.getValueByFieldName(delegate, "mappedStatement");
 
             //对匹配的方法进行sql改写
-            if(StringUtils.isNotBlank(pageSqlId) && mappedStatement.getId().matches(pageSqlId)){
+            if (StringUtils.isNotBlank(pageSqlId) && mappedStatement.getId().matches(pageSqlId)) {
                 BoundSql boundSql = delegate.getBoundSql();
                 Object parameterObject = boundSql.getParameterObject();
 
                 //设置改变sql  TODO 动态改变sql
-                String newSql="";
-                ReflectHelper.setValueByFieldName(boundSql,"sql",newSql);
+                String newSql = "";
+                ReflectHelper.setValueByFieldName(boundSql, "sql", newSql);
             }
 
         }

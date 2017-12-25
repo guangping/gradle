@@ -12,7 +12,6 @@ public interface ICache {
     /**
      * @param key
      * @param value
-     *
      * @desc: 存储
      * @author lance
      * @time: 2017-11-22 14:53:13

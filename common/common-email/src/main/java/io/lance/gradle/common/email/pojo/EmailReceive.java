@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @time: 2017-11-29 16:31
  * @desc: 邮件接收者
  */
-public class EmailReceive implements Serializable{
+public class EmailReceive implements Serializable {
 
     //名称
     private String userName;

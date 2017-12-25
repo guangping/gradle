@@ -28,9 +28,9 @@ public class RedisTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
-    public void runIncr(){
-        String key="Mac";
-        long value = this.redisCache.incr(key,1);
+    public void runIncr() {
+        String key = "Mac";
+        long value = this.redisCache.incr(key, 1);
         System.out.println(value);
     }
 

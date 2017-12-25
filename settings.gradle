@@ -1,13 +1,12 @@
 /**common*/
-include 'common','common:common-core','common:common-dao',
-        'common:common-web','common:common-cache','common:common-email',
-        'common:common-mq','common:common-mongodb'
-
+include 'common', 'common:common-core', 'common:common-dao',
+        'common:common-web', 'common:common-cache', 'common:common-email',
+        'common:common-mq', 'common:common-mongodb'
 
 /*web*/
-include 'web','web:web-ui','web:web-app'
+include 'web', 'web:web-ui', 'web:web-app'
 
 /*api*/
-include 'api','api:api-test'
+include 'api', 'api:api-test'
 
 

@@ -10,8 +10,8 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import java.util.Locale;
 
 /**
- * @desc: 系统异常
  * @author lance
+ * @desc: 系统异常
  * @time: 2017-11-14 17:42:59
  */
 public class EbsException extends RuntimeException {

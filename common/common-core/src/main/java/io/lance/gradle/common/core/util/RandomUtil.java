@@ -12,6 +12,7 @@ public class RandomUtil {
     private static final String TEMPLATE_STRING = "qwertyuiopasdfghjklzxcvbnm1234567890";
 
     private static final String TEMPLATE_STRING_WITH_UNUSUAL = "qwertyuiopasdfghjklzxcvbnm1234567890@!$#%^&*?<>(){}[]=,.|':";
+
     /**
      * @desc: 获取32位随机字符串
      * @author: lance
@@ -45,5 +46,5 @@ public class RandomUtil {
     private static Integer getRandomNumWithUnusual() {
         return new Random().nextInt(58);
     }
-    
+
 }

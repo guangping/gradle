@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.HtmlUtils;
 
-import java.util.List;
-
 /**
  * @author Lance.
  * @time: 2017-11-29 16:06
@@ -35,8 +33,8 @@ public class EmailService {
      * @author lance
      * @time: 2017-11-29 16:14:54
      */
-    public void sendMail(String title, String content, EmailReceive ... receiveList) {
-        if(null==receiveList || receiveList.length==0){
+    public void sendMail(String title, String content, EmailReceive... receiveList) {
+        if (null == receiveList || receiveList.length == 0) {
             logger.info("未设置收件人");
             return;
         }
@@ -60,7 +58,7 @@ public class EmailService {
             email.setHtmlMsg(HtmlUtils.htmlUnescape(content));
 
             //附件
-       /*     email.attach();*/
+            /*     email.attach();*/
 
             //发送
             String result = email.send();

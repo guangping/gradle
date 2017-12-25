@@ -14,8 +14,8 @@ public class MainTest {
 
 
     @Test
-    public void run(){
-        List<String> items= Lists.newArrayList();
+    public void run() {
+        List<String> items = Lists.newArrayList();
         items.add("1");
         items.add("2");
 

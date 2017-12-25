@@ -10,12 +10,12 @@ apply plugin: 'org.springframework.boot'
 
 archivesBaseName = 'api-test'
 
-bootRepackage{
+bootRepackage {
     enabled = false
 }
 
 
-dependencies{
+dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     /*依赖工程*/
     compile project(':common:common-core')

@@ -15,7 +15,7 @@ import org.testng.annotations.Test;
  * @desc:
  */
 @SpringBootTest(classes = AppMain.class)
-public class EmailTest  extends AbstractTestNGSpringContextTests {
+public class EmailTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
     private EmailConfig emailConfig;
@@ -24,19 +24,19 @@ public class EmailTest  extends AbstractTestNGSpringContextTests {
     private EmailService emailService;
 
     @Test
-    public void config(){
+    public void config() {
         System.out.println(this.emailConfig.toString());
     }
 
     @Test
-    public void send(){
-        String title="test";
-        String content="<a href=\"http://www.baidu.com/\">百度</a>";
-        EmailReceive receive=new EmailReceive();
+    public void send() {
+        String title = "test";
+        String content = "<a href=\"http://www.baidu.com/\">百度</a>";
+        EmailReceive receive = new EmailReceive();
         receive.setEmail("mgp@ebidding.com.cn");
         receive.setUserName("lance");
 
-        this.emailService.sendMail(title,content,receive);
+        this.emailService.sendMail(title, content, receive);
 
     }
 

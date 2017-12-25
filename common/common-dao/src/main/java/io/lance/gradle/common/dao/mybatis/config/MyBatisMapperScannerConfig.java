@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,7 +24,7 @@ public class MyBatisMapperScannerConfig {
 
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
-        logger.info("myBatisConfig：{}",myBatisConfig);
+        logger.info("myBatisConfig：{}", myBatisConfig);
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         //获取之前注入的beanName为sqlSessionFactory的对象
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");

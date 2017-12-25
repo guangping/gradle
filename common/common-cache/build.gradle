@@ -9,7 +9,7 @@ buildscript {
 apply plugin: 'org.springframework.boot'
 
 archivesBaseName = 'common-cache'
-version ='0.0.1'
+version = '0.0.1'
 
 bootRepackage {
     enabled = false

@@ -38,11 +38,11 @@ public class DaoTest extends AbstractTestNGSpringContextTests {
     @Test
     public void queryListPage() {
         PageRowBounds rowBounds = new PageRowBounds(10, 10);
-        SysConfig sysConfig=new SysConfig();
+        SysConfig sysConfig = new SysConfig();
         sysConfig.setConfigKey("url");
 
         List<SysConfig> configList = this.sysConfigMapper.queryListPage(sysConfig, rowBounds);
-        PageInfo pageInfo=new PageInfo(configList);
+        PageInfo pageInfo = new PageInfo(configList);
         System.out.println(JsonUtils.toJSONString(pageInfo));
     }
 

@@ -2,7 +2,6 @@ package io.lance.gradle.common.core.util;
 
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.lang3.StringUtils;
 
 /**

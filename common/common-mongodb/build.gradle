@@ -15,7 +15,7 @@ bootRepackage {
 }
 
 dependencies {
-    compile ("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
     compile project(":common:common-core")
 
     testCompile('org.springframework.boot:spring-boot-starter-test')

@@ -22,7 +22,7 @@ public class TestController {
     @RequestMapping(value = "/index", method = {RequestMethod.POST, RequestMethod.GET})
     public JsonResult index() {
         JsonResult jsonResult = new JsonResult();
-        String currentTime = DateFormatUtils.format(new Date(), Constants.DATETIME_FORMAT);
+        String currentTime = DateFormatUtils.format(new Date(), Constants.DATETIME_FORMAT_SS);
         jsonResult.setData(currentTime);
         jsonResult.setCode(1);
         jsonResult.setSuccess(Constants.YES);

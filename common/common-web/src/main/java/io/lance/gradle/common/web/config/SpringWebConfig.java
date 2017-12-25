@@ -74,7 +74,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
                 SerializerFeature.BrowserCompatible,
                 SerializerFeature.WriteNullStringAsEmpty
         );
-        fastJsonConfig.setDateFormat(Constants.DATETIME_FORMAT);
+        fastJsonConfig.setDateFormat(Constants.DATETIME_FORMAT_SS);
         fastConverter.setFastJsonConfig(fastJsonConfig);
 
         //设置支持类型
@@ -162,7 +162,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         configuration.addAutoImport("c", "ftl/common.ftl");
         configuration.setLocale(Locale.CHINESE);
         configuration.setURLEscapingCharset(Constants.CHARSET);
-        configuration.setDateTimeFormat(Constants.DATETIME_FORMAT);
+        configuration.setDateTimeFormat(Constants.DATETIME_FORMAT_SS);
         configuration.setDateFormat(Constants.DATE_FORMAT);
         configuration.setTimeFormat(Constants.TIME_FORMAT);
         configuration.setNumberFormat("0.######");

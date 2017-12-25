@@ -21,6 +21,7 @@ subprojects {
 
         springBootVersion = '1.5.9.RELEASE'
 
+        commonsIoVersion = '2.6'
 
 
         testngVersion = '6.11'
@@ -48,6 +49,7 @@ subprojects {
         compile("com.alibaba:fastjson:${fastJsonVersion}")
         compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
         compile("com.google.guava:guava:${guavaVersion}")
+        compile("commons-io:commons-io:${commonsIoVersion}")
 
         /*日志 log4j2*/
         compile(

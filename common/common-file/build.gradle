@@ -1,0 +1,24 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'org.springframework.boot'
+
+archivesBaseName = 'common-file'
+
+bootRepackage {
+    enabled = false
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+
+    /*依赖工程*/
+    compile project(':common:common-core')
+    compile project(':common:common-web')
+}

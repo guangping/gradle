@@ -15,9 +15,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- * Author: Lance.
- * Date: 2017-09-13 14:30
- * Desc:
+ * web辅助
+ *
+ *
+ * @author lance
+ * @time: 2017-12-25 16:08:46
  */
 public class WebUtil {
 

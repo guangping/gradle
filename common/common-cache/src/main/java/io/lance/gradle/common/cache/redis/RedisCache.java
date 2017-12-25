@@ -93,7 +93,6 @@ public class RedisCache implements ICache {
         if (StringUtils.isBlank(value)) {
             return null;
         }
-        return JsonUtils.parseObject(value, new TypeReference<T>() {
-        });
+        return JsonUtils.parseObject(value, type);
     }
 }

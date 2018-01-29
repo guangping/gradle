@@ -27,9 +27,9 @@ subprojects {
         testngVersion = '6.11'
     }
     repositories {
-        /*     maven {
-                 url  'http://maven.aliyun.com/nexus/content/repositories'
-             }*/
+      /*  maven {
+            url 'http://maven.aliyun.com/nexus/content/repositories'
+        }*/
         mavenLocal()
         mavenCentral()
     }

@@ -38,6 +38,12 @@ public interface Constants {
      **/
     String DATETIME_FORMAT_CN = "yyyy年MM月dd日 HH时mm分";
 
+    String YEAR = "yyyy";
+
+    String MONTH = "MM";
+
+    String DAY = "dd";
+
 
     /**
      * 常用符号

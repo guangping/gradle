@@ -14,6 +14,10 @@ bootRepackage {
     enabled = false
 }
 
+ext {
+    jcraftVersion = '0.1.54'
+}
+
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
@@ -21,4 +25,7 @@ dependencies {
     /*依赖工程*/
     compile project(':common:common-core')
     compile project(':common:common-web')
+
+    /**依赖*/
+    compile("com.jcraft:jsch:${jcraftVersion}")
 }

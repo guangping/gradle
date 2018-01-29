@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'org.springframework.boot'
+
+
+archivesBaseName = 'provider'
+
+bootRepackage {
+    enabled = false
+}
+
+ext {
+    dubboSpringBoot = '1.0.0';
+}
+
+
+version = '0.0.1'
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-web')
+    //compile("com.alibaba.spring.boot:dubbo-spring-boot-starter:${dubboSpringBoot}")
+
+    compile project(":common:common-core")
+    compile project(":dubbo:api")
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}

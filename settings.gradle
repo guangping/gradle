@@ -10,3 +10,5 @@ include 'web', 'web:web-ui', 'web:web-app'
 include 'api', 'api:api-test'
 
 
+/**dubbo*/
+include 'dubbo','dubbo:provider','dubbo:consumer','dubbo:api'

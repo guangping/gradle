@@ -9,6 +9,10 @@ public interface Constants {
 
     String CHARSET = "UTF-8";
 
+    Integer SUCCESS_CODE = 1;
+
+    Integer FAIL_CODE = 0;
+
     String YES = "1";
 
     String NO = "0";

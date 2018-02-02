@@ -1,0 +1,8 @@
+
+
+spring:
+  dubbo:
+    appname: dubbo-provider
+    registry: zookeeper://127.0.0.1:2181
+  #  registry: multicast://127.0.0.1:1111
+    protocol: dubbo

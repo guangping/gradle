@@ -1,6 +1,6 @@
 package io.lance.gradle.dubbo.api.test;
 
-import io.lance.gradle.common.core.util.JsonResult;
+import java.util.Map;
 
 /**
  * @author Lance.
@@ -15,7 +15,7 @@ public interface UserService {
      * @author lance
      * @date 2018-01-29 17:19:40
      */
-    JsonResult getCurrentTime();
+    Map getCurrentTime();
 
 
 }

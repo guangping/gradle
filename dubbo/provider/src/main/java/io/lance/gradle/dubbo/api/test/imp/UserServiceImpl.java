@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import io.lance.gradle.common.core.util.Constants;
 import io.lance.gradle.dubbo.api.test.UserService;
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ import java.util.Map;
  * @time: 2018-01-29 17:22
  * @desc:
  */
+@Component
 @Service(interfaceClass = UserService.class)
 public class UserServiceImpl implements UserService {
     private static final org.apache.logging.log4j.Logger logger = org.apache.logging.log4j.LogManager.getLogger();

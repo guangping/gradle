@@ -108,8 +108,8 @@ CREATE TABLE sys_doc_file (
   COMMENT '创建时间',
   update_time DATETIME    NOT NULL   DEFAULT current_timestamp ON UPDATE current_timestamp
   COMMENT '操作时间',
-  is_template VARCHAR(2)  NOT NULL   DEFAULT '0'
-  COMMENT '是否模板文件 0 不是 1 是',
+  type VARCHAR(2)  NOT NULL   DEFAULT '0'
+  COMMENT '0 普通文件 1 模板文件',
   PRIMARY KEY (id),
   UNIQUE (file_code)
 )

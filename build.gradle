@@ -4,9 +4,9 @@ allprojects {
 
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
+
+    version = 2.0
 }
-
-
 
 subprojects {
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
@@ -29,9 +29,9 @@ subprojects {
         testngVersion = '6.11'
     }
     repositories {
-      /*  maven {
-            url 'http://maven.aliyun.com/nexus/content/repositories'
-        }*/
+        /*  maven {
+              url 'http://maven.aliyun.com/nexus/content/repositories'
+          }*/
         mavenLocal()
         mavenCentral()
     }
@@ -64,8 +64,8 @@ subprojects {
                 "org.apache.logging.log4j:log4j-1.2-api:${log4jVersion}",
                 /*    "org.apache.logging.log4j:log4j-slf4j-impl:${log4jVersion}",*/
                 "org.apache.logging.log4j:log4j-jcl:${log4jVersion}",
-                /*nosql*/
-                "org.apache.logging.log4j:log4j-nosql:${log4jVersion}",
+                /*nosql
+                "org.apache.logging.log4j:log4j-nosql:2.9.1",*/
                 /*web*/
                 "org.apache.logging.log4j:log4j-web:${log4jVersion}",
                 /*异步*/

@@ -1,4 +1,4 @@
-package io.lance.gradle.common.core.spring.disruptor.generic;
+package io.lance.gradle.common.core.disruptor.generic;
 
 
 /**

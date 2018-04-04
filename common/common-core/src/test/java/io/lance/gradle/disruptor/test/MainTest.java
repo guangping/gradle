@@ -2,10 +2,10 @@ package io.lance.gradle.disruptor.test;
 
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
-import io.lance.gradle.common.core.spring.disruptor.generic.GenericEvent;
-import io.lance.gradle.common.core.spring.disruptor.generic.GenericEventFactory;
-import io.lance.gradle.common.core.spring.disruptor.generic.GenericEventHandler;
-import io.lance.gradle.common.core.spring.disruptor.generic.GenericEventProducer;
+import io.lance.gradle.common.core.disruptor.generic.GenericEvent;
+import io.lance.gradle.common.core.disruptor.generic.GenericEventFactory;
+import io.lance.gradle.common.core.disruptor.generic.GenericEventHandler;
+import io.lance.gradle.common.core.disruptor.generic.GenericEventProducer;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;

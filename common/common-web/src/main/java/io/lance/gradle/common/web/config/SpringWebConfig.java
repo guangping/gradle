@@ -14,7 +14,7 @@ import io.lance.gradle.common.web.interceptor.PermissionInterceptor;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -23,7 +23,7 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter;
@@ -40,7 +40,7 @@ import java.util.Locale;
  * @desc: mvc配置
  */
 @Configuration
-public class SpringWebConfig extends WebMvcConfigurerAdapter {
+public class SpringWebConfig implements WebMvcConfigurer {
 
     private static final Logger logger = LogManager.getLogger();
 
@@ -128,7 +128,7 @@ public class SpringWebConfig extends WebMvcConfigurerAdapter {
         registry.addInterceptor(new GuestPageInterceptor()).addPathPatterns("/**");
         registry.addInterceptor(new PermissionInterceptor()).addPathPatterns("/**");
 
-        super.addInterceptors(registry);
+        //addInterceptors(registry);
     }
 
     /**

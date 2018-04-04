@@ -7,12 +7,16 @@ buildscript {
     }
 }
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 
 archivesBaseName = 'common-email'
 
-bootRepackage {
+bootJar {
     enabled = false
+}
+jar {
+    enabled = true
 }
 
 ext {
@@ -20,7 +24,6 @@ ext {
     commonsEmailVersion = '1.5'
 }
 
-version = '0.0.1'
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')

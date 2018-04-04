@@ -11,4 +11,4 @@ include 'api', 'api:api-test'
 
 
 /**dubbo*/
-include 'dubbo','dubbo:provider','dubbo:consumer','dubbo:api'
+//include 'dubbo','dubbo:provider','dubbo:consumer','dubbo:api'

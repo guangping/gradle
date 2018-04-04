@@ -5,7 +5,6 @@ import io.lance.gradle.common.core.util.Constants;
 import io.lance.gradle.common.core.util.JsonResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.boot.autoconfigure.web.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Controller
 @RequestMapping("/error")
-public class CommonErrorController implements ErrorController {
+public class CommonErrorController {
 
     private static final Logger logger = LogManager.getLogger(CommonErrorController.class);
 
@@ -43,9 +42,5 @@ public class CommonErrorController implements ErrorController {
 
         return jsonResult;
     }
-
-    @Override
-    public String getErrorPath() {
-        return "error/errorPage";
-    }
+    
 }

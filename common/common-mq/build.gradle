@@ -5,8 +5,6 @@ archivesBaseName = 'common-mq'
 ext {
 }
 
-version = '0.0.1'
-
 dependencies {
     compile project(":common:common-core")
 

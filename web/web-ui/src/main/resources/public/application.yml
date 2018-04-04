@@ -15,9 +15,9 @@ spring:
 
 server:
   port: 81
-  context-path: /
-  session:
-    cookie:
-      http-only: true
-
+  servlet:
+    context-path: /
+    session:
+      cookie:
+        http-only: true
 

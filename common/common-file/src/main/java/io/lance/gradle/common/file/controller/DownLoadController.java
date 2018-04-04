@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
 import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -46,7 +51,7 @@ public class DownLoadController {
 
         //TODO 1.验证文件的合法性
 
-        String ip = WebUtil.getIpAddress();
+         String ip = WebUtil.getIpAddress();
         //TODO 2.验证ip合法性
 
         File downFile = null;

@@ -7,11 +7,15 @@ buildscript {
     }
 }
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 archivesBaseName = 'common-dao'
 
-bootRepackage {
+bootJar {
     enabled = false
+}
+jar {
+    enabled = true
 }
 
 ext {
@@ -20,7 +24,6 @@ ext {
     mybatisSpringBottVersion = '1.3.1'
     pagehelperVersion = '5.1.2'
 }
-version = '0.0.2'
 
 configurations {
     mybatisGenerator

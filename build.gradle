@@ -42,15 +42,18 @@ subprojects {
         }
     }
 
-    /* configurations {
+     configurations {
          // 所有需要忽略的包定义在此
-         all*.exclude group: 'commons-beanutils', module: 'commons-beanutils'
-     }*/
+         all*.exclude group: 'org.apache.tomcat.embed'
+     }
 
 
 
 
     dependencies {
+        runtime("javax:javaee-api:8.0")
+        compile("org.eclipse:yasson:1.0.1")
+        compile("org.glassfish:javax.json:1.1.2")
         compile("com.alibaba:fastjson:${fastJsonVersion}")
         compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
         compile("com.google.guava:guava:${guavaVersion}")

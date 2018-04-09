@@ -19,8 +19,6 @@ dependencies {
     compile project(':api:api-test')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
-
-    //providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 }
 /*多环境打包*/
 def env = System.getProperty("profile") ?: "dev"

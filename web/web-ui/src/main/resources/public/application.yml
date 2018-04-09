@@ -20,4 +20,6 @@ server:
     session:
       cookie:
         http-only: true
+  error:
+    path: /main/error
 

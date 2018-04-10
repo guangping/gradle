@@ -75,4 +75,6 @@ public interface Constants {
      */
     String REFERER = "referer";
 
+    String ERROR="/error";
+
 }

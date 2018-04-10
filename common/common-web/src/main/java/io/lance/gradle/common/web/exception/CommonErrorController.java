@@ -19,11 +19,11 @@ import javax.servlet.http.HttpServletResponse;
  * @desc: 覆盖springboot默认异常处理
  * @time: 2017-11-17 15:16:45
  */
-//@Controller
-//@RequestMapping("/main/error")
 public class CommonErrorController implements ErrorController {
 
     private static final Logger logger = LogManager.getLogger(CommonErrorController.class);
+
+    private static final String PATH = "/error";
 
     @RequestMapping(produces = "text/html")
     public ModelAndView errorHtml(HttpServletRequest request, HttpServletResponse response) {
@@ -40,12 +40,14 @@ public class CommonErrorController implements ErrorController {
     @ResponseBody
     public JsonResult error(HttpServletRequest request) {
         JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode(-1);
+        jsonResult.setMessage("Unknown error");
 
         return jsonResult;
     }
 
     @Override
     public String getErrorPath() {
-        return "/main/error";
+        return PATH;
     }
 }

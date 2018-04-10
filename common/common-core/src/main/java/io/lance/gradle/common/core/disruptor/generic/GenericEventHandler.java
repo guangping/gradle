@@ -21,8 +21,11 @@ public class GenericEventHandler<T> implements EventHandler<GenericEvent<T>> {
 
     @Override
     public void onEvent(GenericEvent<T> event, long sequence, boolean endOfBatch) throws Exception {
-        System.out.println("消费者EventHandler(" + name + ")" + ":" + event.get()
-                + ":" + Thread.currentThread().getName() + ":" + this.hashCode());
+        if ("ex".equals(String.valueOf(event.get()))) {
+            throw new RuntimeException("出错了");
+        }
+
+        System.out.println("消费者EventHandler(" + name + ")" + ":" + event.get());
     }
 
 }

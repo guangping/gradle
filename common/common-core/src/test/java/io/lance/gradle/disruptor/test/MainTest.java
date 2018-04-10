@@ -1,14 +1,16 @@
 package io.lance.gradle.disruptor.test;
 
+import com.lmax.disruptor.ExceptionHandler;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import io.lance.gradle.common.core.disruptor.generic.GenericEvent;
 import io.lance.gradle.common.core.disruptor.generic.GenericEventFactory;
 import io.lance.gradle.common.core.disruptor.generic.GenericEventHandler;
 import io.lance.gradle.common.core.disruptor.generic.GenericEventProducer;
+import io.lance.gradle.common.core.disruptor.generic.GenericWorkHandler;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 
-import java.util.UUID;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -20,34 +22,56 @@ public class MainTest {
 
     private static final int bufferSize = 8;
 
-    public static void main(String[] args) {
+    private Disruptor<GenericEvent<String>> disruptor = null;
+
+    @BeforeTest
+    public void setUp() {
         GenericEventFactory<GenericEvent<String>> eventFactory = new GenericEventFactory<GenericEvent<String>>();
 
-        Disruptor<GenericEvent<String>> disruptor = new Disruptor(eventFactory, bufferSize,
+        disruptor = new Disruptor(eventFactory, bufferSize,
                 Executors.defaultThreadFactory());
 
         disruptor.handleEventsWith(new GenericEventHandler<String>("1"));
+        disruptor.handleEventsWithWorkerPool(new GenericWorkHandler<String>("2"));
+
+        //异常处理
+        disruptor.setDefaultExceptionHandler(new ExceptionHandler<GenericEvent<String>>() {
+            @Override
+            public void handleEventException(Throwable ex, long sequence, GenericEvent<String> event) {
+                System.out.println("业务处理异常," + sequence + ",value：" + event.get());
+
+                ex.printStackTrace();
+            }
+
+            @Override
+            public void handleOnStartException(Throwable ex) {
+                System.out.println("启动时异常");
+            }
+
+            @Override
+            public void handleOnShutdownException(Throwable ex) {
+                System.out.println("关闭时异常");
+            }
+        });
+
 
         disruptor.start();
+    }
 
+    @Test
+    public void publish() {
         RingBuffer<GenericEvent<String>> ringBuffer = disruptor.getRingBuffer();
 
         GenericEventProducer<String> producer = new GenericEventProducer(ringBuffer);
-        //producer.publish("ssss");
+        producer.publish("1");
+        producer.publish("2");
+        producer.publish("3");
+        producer.publish("ex");
+        producer.publish("5");
+        producer.publish("6");
 
 
-        ExecutorService es = Executors.newFixedThreadPool(100);
-        for (int i = 0; i < 10; i++) {
-            es.submit(new Runnable() {
-                public void run() {
-                    for (long l = 0; l < 20; l++) {
-                        producer.publish(UUID.randomUUID().toString());
-                    }
-                }
-            });
-        }
         System.out.println("end.....");
-
     }
 
 

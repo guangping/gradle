@@ -5,9 +5,9 @@ import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import io.lance.gradle.common.core.disruptor.generic.GenericEvent;
 import io.lance.gradle.common.core.disruptor.generic.GenericEventFactory;
-import io.lance.gradle.common.core.disruptor.generic.GenericEventHandler;
 import io.lance.gradle.common.core.disruptor.generic.GenericEventProducer;
 import io.lance.gradle.common.core.disruptor.generic.GenericWorkHandler;
+import io.lance.gradle.common.core.util.Constants;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,7 +20,6 @@ import java.util.concurrent.Executors;
  */
 public class MainTest {
 
-    private static final int bufferSize = 8;
 
     private Disruptor<GenericEvent<String>> disruptor = null;
 
@@ -28,11 +27,18 @@ public class MainTest {
     public void setUp() {
         GenericEventFactory<GenericEvent<String>> eventFactory = new GenericEventFactory<GenericEvent<String>>();
 
-        disruptor = new Disruptor(eventFactory, bufferSize,
+        disruptor = new Disruptor(eventFactory, Constants.RING_BUFFER_SIZE,
                 Executors.defaultThreadFactory());
 
-        disruptor.handleEventsWith(new GenericEventHandler<String>("1"));
-        disruptor.handleEventsWithWorkerPool(new GenericWorkHandler<String>("2"));
+        /**可以设置handler执行顺序
+         disruptor.handleEventsWith(null).then(null).and(null);
+         */
+
+        // disruptor.handleEventsWith(new GenericEventHandler<String>("1"));
+        //多个消费者 消息只消费一次
+        disruptor.handleEventsWithWorkerPool(new GenericWorkHandler<String>("1"),
+                new GenericWorkHandler<>("2"));
+
 
         //异常处理
         disruptor.setDefaultExceptionHandler(new ExceptionHandler<GenericEvent<String>>() {

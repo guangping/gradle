@@ -75,6 +75,8 @@ public interface Constants {
      */
     String REFERER = "referer";
 
-    String ERROR="/error";
+    String ERROR = "/error";
+
+    int RING_BUFFER_SIZE = 1024;
 
 }

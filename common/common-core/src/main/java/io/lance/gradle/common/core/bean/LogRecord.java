@@ -1,7 +1,5 @@
 package io.lance.gradle.common.core.bean;
 
-import java.util.Date;
-
 /**
  * @desc: 日志
  * @author: lance
@@ -35,9 +33,15 @@ public class LogRecord extends BaseBean {
     private String tableName;
 
     /**
-     * 操作时间
+     * 访问者ip
      */
-    private Date createTime = new Date(System.currentTimeMillis());
+    private String ip;
+
+    /**
+     * 访问路径
+     */
+    private String url;
+
 
     public String getOperator() {
         return operator;
@@ -79,12 +83,22 @@ public class LogRecord extends BaseBean {
         this.tableName = tableName;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    @Override
+    public String getIp() {
+        return ip;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    @Override
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
@@ -95,7 +109,8 @@ public class LogRecord extends BaseBean {
                 ", content='" + content + '\'' +
                 ", objId=" + objId +
                 ", tableName='" + tableName + '\'' +
-                ", createTime=" + createTime +
+                ", ip='" + ip + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

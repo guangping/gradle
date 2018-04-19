@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<configuration status="info" packages="com.ebidding.qycg.module.common.log4j">
+<configuration status="info" packages="io.lance.gradle.common.core.log4j2">
     <Properties>
         <!--${web:rootDir} 工程目录 ${sys:catalina.home} tomcat目录-->
         <property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %c:%L - %m%n</property>

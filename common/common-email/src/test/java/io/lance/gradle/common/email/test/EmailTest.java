@@ -33,8 +33,8 @@ public class EmailTest extends AbstractTestNGSpringContextTests {
         String title = "test";
         String content = "<a href=\"http://www.baidu.com/\">百度</a>";
         EmailReceive receive = new EmailReceive();
-        receive.setEmail("mgp@ebidding.com.cn");
-        receive.setUserName("lance");
+        receive.setEmail("");
+        receive.setUserName("");
 
         this.emailService.sendMail(title, content, receive);
 

@@ -12,7 +12,7 @@ subprojects {
     [compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
     ext {
-        fastJsonVersion = '1.2.46'
+        fastJsonVersion = '1.2.47'
         commonsLang3Version = '3.7'
         springVersion = '5.0.5.RELEASE'
         guavaVersion = '22.0'

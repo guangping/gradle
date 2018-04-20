@@ -19,9 +19,9 @@ jar {
 }
 
 ext {
-    druidVersion = '1.1.5'
+    druidVersion = '1.1.9'
     mysqlConnectorVersion = '5.1.42'
-    mybatisSpringBottVersion = '1.3.1'
+    mybatisSpringBottVersion = '1.3.2'
     pagehelperVersion = '5.1.2'
 }
 

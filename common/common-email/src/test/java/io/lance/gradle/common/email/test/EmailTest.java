@@ -36,7 +36,7 @@ public class EmailTest extends AbstractTestNGSpringContextTests {
         receive.setEmail("");
         receive.setUserName("");
 
-       
+
     }
 
 

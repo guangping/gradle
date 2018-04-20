@@ -1,4 +1,6 @@
-package io.lance.gradle.common.core.bean;
+package io.lance.gradle.common.log.pojo;
+
+import io.lance.gradle.common.core.bean.BaseBean;
 
 /**
  * @desc: 日志
@@ -32,15 +34,6 @@ public class LogRecord extends BaseBean {
      */
     private String tableName;
 
-    /**
-     * 访问者ip
-     */
-    private String ip;
-
-    /**
-     * 访问路径
-     */
-    private String url;
 
 
     public String getOperator() {
@@ -83,23 +76,6 @@ public class LogRecord extends BaseBean {
         this.tableName = tableName;
     }
 
-    @Override
-    public String getIp() {
-        return ip;
-    }
-
-    @Override
-    public void setIp(String ip) {
-        this.ip = ip;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     @Override
     public String toString() {
@@ -109,8 +85,6 @@ public class LogRecord extends BaseBean {
                 ", content='" + content + '\'' +
                 ", objId=" + objId +
                 ", tableName='" + tableName + '\'' +
-                ", ip='" + ip + '\'' +
-                ", url='" + url + '\'' +
                 '}';
     }
 }

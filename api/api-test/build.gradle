@@ -21,4 +21,5 @@ dependencies {
     compile('org.springframework.boot:spring-boot-properties-migrator')
     /*依赖工程*/
     compile project(':common:common-core')
+    compile project(':common:common-web')
 }

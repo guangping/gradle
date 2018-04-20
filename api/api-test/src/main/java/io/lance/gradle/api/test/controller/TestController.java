@@ -1,9 +1,10 @@
 package io.lance.gradle.api.test.controller;
 
-import io.lance.gradle.common.core.bean.LogRecord;
-import io.lance.gradle.common.core.service.LogService;
+import io.lance.gradle.common.log.pojo.LogRecord;
+import io.lance.gradle.common.log.service.LogService;
 import io.lance.gradle.common.core.util.Constants;
 import io.lance.gradle.common.core.util.JsonResult;
+import io.lance.gradle.common.web.util.WebUtil;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,6 +47,8 @@ public class TestController {
 
         LogRecord logRecord = new LogRecord();
         logRecord.setContent(currentTime);
+        logRecord.setIp(WebUtil.getIpAddress());
+        logRecord.setRequestUrl(WebUtil.getRequest().getRequestURI());
 
         this.logService.save(logRecord);
 

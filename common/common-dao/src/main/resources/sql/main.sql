@@ -117,6 +117,26 @@ CREATE TABLE sys_doc_file (
   DEFAULT CHARSET = utf8
   COMMENT '文件记录表';
 
+/**消息模板*/
+CREATE TABLE sys_msg_template (
+  id          INT(11)                AUTO_INCREMENT,
+  code  varchar(32) not null COMMENT '模板code',
+  name varchar(128)  null COMMENT '模板名称',
+  title varchar(128)  null COMMENT '标题',
+  content text  null COMMENT '内容',
+  is_deleted VARCHAR(2)   NOT NULL  DEFAULT '0'
+  COMMENT '是否删除 0 正常 1 删除',
+  create_time DATETIME    NOT NULL   DEFAULT current_timestamp
+  COMMENT '创建时间',
+  update_time DATETIME    NOT NULL   DEFAULT current_timestamp ON UPDATE current_timestamp
+  COMMENT '操作时间',
+  type VARCHAR(2)  NOT NULL   DEFAULT '0'
+  COMMENT '0 站内信  1 短信  2 邮件  ',
+  PRIMARY KEY (id)
+)
+  ENGINE = innodb
+  DEFAULT CHARSET = utf8
+  COMMENT '消息模板表';
 
 /**操作日志*/
 

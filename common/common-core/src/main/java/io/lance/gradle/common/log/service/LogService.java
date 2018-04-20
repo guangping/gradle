@@ -1,20 +1,22 @@
-package io.lance.gradle.common.core.service;
+package io.lance.gradle.common.log.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.ExceptionHandler;
 import com.lmax.disruptor.WorkHandler;
 import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
-import io.lance.gradle.common.core.bean.LogRecord;
+import io.lance.gradle.common.core.disruptor.generic.GenericEvent;
 import io.lance.gradle.common.core.util.Constants;
+import io.lance.gradle.common.log.pojo.LogRecord;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.Serializable;
+import javax.annotation.PreDestroy;
 import java.util.concurrent.Executors;
 
 /**
@@ -27,20 +29,20 @@ public class LogService {
 
     private static final Logger logger = LogManager.getLogger();
 
-    private Disruptor<LogEvent> disruptor = null;
+    private Disruptor<GenericEvent<LogRecord>> disruptor = null;
+
 
     @PostConstruct
-    public void init() {
-        logger.info("日志记录init ......");
-        EventFactory<LogEvent> eventFactory = new EventFactory<LogEvent>() {
+    public void init() {//TODO 初始化两种方案 方案一:当前实现的方式  方案二:可放在静态块中执行 考虑spring注入的问题
+        EventFactory<GenericEvent> eventFactory = new EventFactory<GenericEvent>() {
             @Override
-            public LogEvent newInstance() {
-                return new LogEvent();
+            public GenericEvent newInstance() {
+                return new GenericEvent();
             }
         };
 
-        disruptor = new Disruptor<LogEvent>(
-                LogEvent::new, Constants.RING_BUFFER_SIZE,
+        disruptor = new Disruptor<GenericEvent<LogRecord>>(
+                GenericEvent<LogRecord>::new, Constants.RING_BUFFER_SIZE,
                 Executors.defaultThreadFactory(),
                 ProducerType.SINGLE,
                 new YieldingWaitStrategy());
@@ -48,9 +50,9 @@ public class LogService {
         disruptor.handleEventsWithWorkerPool(getWorkPool());
 
         //异常处理
-        disruptor.setDefaultExceptionHandler(new ExceptionHandler<LogEvent>() {
+        disruptor.setDefaultExceptionHandler(new ExceptionHandler<GenericEvent>() {
             @Override
-            public void handleEventException(Throwable ex, long sequence, LogEvent event) {
+            public void handleEventException(Throwable ex, long sequence, GenericEvent event) {
                 logger.catching(ex);
             }
 
@@ -65,8 +67,13 @@ public class LogService {
             }
         });
 
-
         disruptor.start();
+        logger.info("日志记录init ......");
+    }
+
+    @PreDestroy
+    public void shutdown() {
+        disruptor.shutdown();
     }
 
     /**
@@ -75,7 +82,7 @@ public class LogService {
      * @time: 2017-10-23 15:16:39
      */
     public void save(LogRecord record) {
-        disruptor.getRingBuffer().publishEvent((event, sequence, arg) -> event.logRecord = arg, record);
+        disruptor.getRingBuffer().publishEvent((event, sequence, arg) -> event.set(arg), record);
     }
 
 
@@ -97,7 +104,7 @@ public class LogService {
      * @author lance
      * @date 2018-04-10 16:40:46
      */
-    class LogWorkerHandler implements WorkHandler<LogEvent> {
+    class LogWorkerHandler implements WorkHandler<GenericEvent<LogRecord>> {
 
         private String name;
 
@@ -107,12 +114,16 @@ public class LogService {
 
 
         @Override
-        public void onEvent(LogEvent event) throws Exception {
-            logger.info("{}->记录日志:{}", name, event.logRecord.toString());
+        public void onEvent(GenericEvent<LogRecord> event) throws Exception {
+            LogRecord logRecord = event.get();
+            
+            handle(logRecord);
         }
     }
 
-    class LogEvent<LogRecord> implements Serializable {
-        private LogRecord logRecord;
+    private void handle(LogRecord logRecord) {
+        System.out.println(JSONObject.toJSONString(logRecord));
     }
+
+
 }

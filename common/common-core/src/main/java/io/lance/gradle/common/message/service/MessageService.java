@@ -10,7 +10,9 @@ import com.lmax.disruptor.dsl.ProducerType;
 import io.lance.gradle.common.core.disruptor.generic.GenericEvent;
 import io.lance.gradle.common.core.exception.EbsException;
 import io.lance.gradle.common.core.util.Constants;
+import io.lance.gradle.common.message.pojo.Message;
 import io.lance.gradle.common.message.pojo.MessageSend;
+import io.lance.gradle.common.message.util.MessageConstants;
 import io.lance.gradle.common.message.util.MessageTemplateCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -106,8 +108,28 @@ public class MessageService {
             MessageTemplateCode templateCode = msg.getTemplateCode();
             Map templatParam = msg.getTemplateParam();
 
+            //根据模板code 获取所有模块 根据模板内容调用相关业务进行处理
+
             System.out.println("模板code:" + String.valueOf(templateCode).toLowerCase() + ",参数:" + JSONObject.toJSONString(templatParam));
 
+        }
+    }
+
+    private void sendMessage(Message message) {
+        String type = message.getType();
+        switch (type) {
+            case MessageConstants.EMAIL:
+                logger.info("email");
+                break;
+            case MessageConstants.SITE:
+                logger.info("site");
+                break;
+            case MessageConstants.SMS:
+                logger.info("sms");
+                break;
+            default:
+                logger.info("default message");
+                break;
         }
     }
 

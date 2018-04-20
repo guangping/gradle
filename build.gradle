@@ -19,7 +19,7 @@ subprojects {
         commonsCodecVersion = '1.11'
 
         log4jVersion = '2.11.0'
-        disruptorVersion = '3.3.6'
+        disruptorVersion = '3.4.2'
 
         springBootVersion = '2.0.1.RELEASE'
 

@@ -1,0 +1,9 @@
+spring:
+  rabbitmq:
+   # addresses:
+    host: 47.98.110.87
+    port: 5672
+    username:
+    password:
+    virtual-host: /
+    publisher-confirms: true

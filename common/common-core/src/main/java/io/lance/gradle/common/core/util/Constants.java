@@ -1,5 +1,7 @@
 package io.lance.gradle.common.core.util;
 
+import java.io.File;
+
 /**
  * @author lance
  * @desc: 常量类
@@ -57,6 +59,7 @@ public interface Constants {
     String COMMA = ",";
     String DOT = ".";
     String COMMA_CN = "，";
+    String VERTICAL = "\\|";
 
 
     /**
@@ -81,4 +84,11 @@ public interface Constants {
 
     int RING_BUFFER_SIZE = 1024;
 
+    //
+    String OK = "ok";
+
+    String FAIL = "fail";
+
+    //系统分隔符
+    String SEPARATOR = File.separator;
 }

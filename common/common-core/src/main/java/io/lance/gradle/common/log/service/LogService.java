@@ -4,8 +4,8 @@ package io.lance.gradle.common.log.service;
 import com.alibaba.fastjson.JSONObject;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.ExceptionHandler;
+import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.WorkHandler;
-import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import io.lance.gradle.common.core.disruptor.generic.GenericEvent;
@@ -42,10 +42,10 @@ public class LogService {
         };
 
         disruptor = new Disruptor<GenericEvent<LogRecord>>(
-                GenericEvent<LogRecord>::new, Constants.RING_BUFFER_SIZE,
+                GenericEvent<LogRecord>::new, Constants.RING_64,
                 Executors.defaultThreadFactory(),
                 ProducerType.SINGLE,
-                new YieldingWaitStrategy());
+                new SleepingWaitStrategy());
 
         disruptor.handleEventsWithWorkerPool(getWorkPool());
 
@@ -116,7 +116,7 @@ public class LogService {
         @Override
         public void onEvent(GenericEvent<LogRecord> event) throws Exception {
             LogRecord logRecord = event.get();
-            
+
             handle(logRecord);
         }
     }

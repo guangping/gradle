@@ -82,7 +82,18 @@ public interface Constants {
 
     String ERROR = "/error";
 
+    /**
+     * ring
+     **/
     int RING_BUFFER_SIZE = 1024;
+
+    int RING_64 = 64;
+
+    int RING_128 = 128;
+
+    int RING_256 = 256;
+
+    int RING_512 = 512;
 
     //
     String OK = "ok";

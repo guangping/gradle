@@ -19,7 +19,7 @@ jar {
 }
 
 ext {
-    redissonVersion = '3.5.5'
+    redissonVersion = '3.6.5'
 }
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')

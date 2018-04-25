@@ -16,7 +16,6 @@
 
         <!--PageHelper 分页插件-->
         <plugin interceptor="com.github.pagehelper.PageInterceptor">
-            <property name="countSuffix" value="Count"/>
         </plugin>
     </plugins>
 </configuration>

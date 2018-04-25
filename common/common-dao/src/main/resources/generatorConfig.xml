@@ -10,7 +10,7 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL=""
+                        connectionURL="jdbc:mysql://***.***.**.**:3306/database?useUnicode=true&amp;characterEncoding=UTF-8&amp;allowMultiQueries=true"
                         userId="" password=""/>
 
         <!-- 生成vo对象 -->
@@ -20,6 +20,10 @@
         <!-- 生成DAO的类文件以及配置文件 -->
         <javaClientGenerator targetPackage="io.lance.gradle.common.dao.modules.sys.mapper" targetProject="./temp"
                              type="XMLMAPPER"/>
+
+        <!--
+         大字段
+        <columnOverride column="INDUSTRY_EXTENTION" javaType="java.lang.String" jdbcType="VARCHAR" />-->
 
         <!-- 想要生成的数据库表,自动化工具会根据该表的结构生成相应的vo对象-->
 

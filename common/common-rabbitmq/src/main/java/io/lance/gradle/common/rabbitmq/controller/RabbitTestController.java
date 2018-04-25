@@ -44,13 +44,34 @@ public class RabbitTestController {
 
         String currentTime = DateFormatUtils.format(new Date(), Constants.DATETIME_FORMAT_SS);
         Map<String, String> msg = Maps.newHashMap();
-        msg.put("id", String.valueOf(atom.getAndIncrement()));
+        msg.put("id", String.valueOf(atom.incrementAndGet()));
         msg.put("message", "ok");
         msg.put("currentTime", currentTime);
 
         String s = JsonUtils.toJSONString(msg);
 
         this.rabbitTemplate.convertAndSend(RabbitQueue.NOTICE, s);
+
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/send/batch", method = {RequestMethod.GET, RequestMethod.POST})
+    public JsonResult sendBatch() {
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setMessage(Constants.OK);
+
+        for (int i = 0; i < 100; i++) {
+            String currentTime = DateFormatUtils.format(new Date(), Constants.DATETIME_FORMAT_SS);
+            Map<String, String> msg = Maps.newHashMap();
+            msg.put("id", String.valueOf(atom.incrementAndGet()));
+            msg.put("message", "ok");
+            msg.put("currentTime", currentTime);
+
+            String s = JsonUtils.toJSONString(msg);
+
+            this.rabbitTemplate.convertAndSend(RabbitQueue.NOTICE, s);
+        }
 
         return jsonResult;
     }

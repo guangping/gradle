@@ -40,11 +40,12 @@ public class RabbitConsumerManual {
             @Override
             public void onMessage(Message message, Channel channel) throws Exception {
                 //channel.basicConsume(message.getMessageProperties().getConsumerQueue(), false, null);
+                channel.basicQos(1);//保证在接收端一个消息没有处理完时不会接收另一个消息，即接收端发送了ack后才会接收下一个消息
 
                 // 监听队列，手动返回完成
                 byte[] body = message.getBody();
                 String str = new String(body);
-                logger.info("receive msg : {}", str);
+                logger.info("{} -> receive msg : {}", "消费者2",str);
                 String id = JSONObject.parseObject(str).getString("id");
 
                 //确认消息成功消费 false只确认当前一个消息收到，true确认所有consumer获得的消息

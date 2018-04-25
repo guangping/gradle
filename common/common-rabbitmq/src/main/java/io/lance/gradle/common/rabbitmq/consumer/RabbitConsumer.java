@@ -12,15 +12,15 @@ import org.springframework.stereotype.Component;
  * @time: 2018-04-23 15:40
  * @desc:
  */
-/*@Component
+@Component
 @RabbitListener(queues = RabbitQueue.NOTICE)
 public class RabbitConsumer {
 
     private static final Logger logger = LogManager.getLogger();
 
-    @RabbitHandler
+    @RabbitHandler //自动确认
     public void process(String str) {
-        logger.info("receive msg:{}", str);
+        logger.info("{} -> receive msg:{}", "消费者1", str);
     }
 
-}*/
+}

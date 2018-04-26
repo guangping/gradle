@@ -25,6 +25,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
 
     compile("org.redisson:redisson:${redissonVersion}")
+    compile("com.github.ben-manes.caffeine:caffeine:2.6.2")
     /*依赖工程*/
     compile project(':common:common-core')
 

@@ -18,7 +18,7 @@ dependencies {
     /*依赖工程*/
     compile project(':common:common-web')
     compile project(':api:api-test')
-    compile project(':common:common-rabbitmq')
+    /*compile project(':common:common-rabbitmq')*/
 
 
     testCompile('org.springframework.boot:spring-boot-starter-test')

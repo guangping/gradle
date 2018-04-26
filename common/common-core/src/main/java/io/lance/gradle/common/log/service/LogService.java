@@ -2,7 +2,6 @@ package io.lance.gradle.common.log.service;
 
 
 import com.alibaba.fastjson.JSONObject;
-import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.ExceptionHandler;
 import com.lmax.disruptor.SleepingWaitStrategy;
 import com.lmax.disruptor.WorkHandler;
@@ -34,13 +33,6 @@ public class LogService {
 
     @PostConstruct
     public void init() {//TODO 初始化两种方案 方案一:当前实现的方式  方案二:可放在静态块中执行 考虑spring注入的问题
-        EventFactory<GenericEvent> eventFactory = new EventFactory<GenericEvent>() {
-            @Override
-            public GenericEvent newInstance() {
-                return new GenericEvent();
-            }
-        };
-
         disruptor = new Disruptor<GenericEvent<LogRecord>>(
                 GenericEvent<LogRecord>::new, Constants.RING_64,
                 Executors.defaultThreadFactory(),
@@ -116,14 +108,11 @@ public class LogService {
         @Override
         public void onEvent(GenericEvent<LogRecord> event) throws Exception {
             LogRecord logRecord = event.get();
+            //SpringApplicationContext.getBean();
 
-            handle(logRecord);
+
+            logger.info("{} 记录日志 {}", name, JSONObject.toJSONString(logRecord));
         }
     }
-
-    private void handle(LogRecord logRecord) {
-        System.out.println(JSONObject.toJSONString(logRecord));
-    }
-
 
 }

@@ -36,13 +36,6 @@ public class MessageService {
 
     @PostConstruct
     public void init() {
-        EventFactory<GenericEvent<MessageSend>> eventFactory = new EventFactory<GenericEvent<MessageSend>>() {
-            @Override
-            public GenericEvent<MessageSend> newInstance() {
-                return new GenericEvent<MessageSend>();
-            }
-        };
-
         disruptor = new Disruptor<GenericEvent<MessageSend>>(
                 GenericEvent<MessageSend>::new, Constants.RING_64,
                 Executors.defaultThreadFactory(),

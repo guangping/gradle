@@ -1,0 +1,29 @@
+
+spring:
+#数据库配置
+  datasource:
+    name: common-dao
+    url:
+    username: ebs
+    password: ebs
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    #druid相关配置
+    filters: stat
+    maxActive: 15
+    initialSize: 3
+    maxWait: 5000
+    minIdle: 3
+    timeBetweenEvictionRunsMillis: 90000
+    minEvictableIdleTimeMillis: 1800000
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+
+
+mybatis:
+  config-location: classpath:mybatis/config/mybatis-conf.xml
+  check-config-location: true
+  mapper-locations: classpath*:mybatis/mapper/*/*.xml
+  type-aliases-package: io.lance.gradle.common.dao.modules.**.mapper
+  base-package: io.lance.gradle.common.dao.modules.**.mapper

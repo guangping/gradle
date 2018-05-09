@@ -1,8 +1,14 @@
 package io.lance.gradle.common.shiro.config;
 
+import io.lance.gradle.common.shiro.realm.UserAuthorizingRealm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.session.mgt.DefaultSessionManager;
+import org.apache.shiro.session.mgt.SessionManager;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,10 +28,10 @@ public class ShiroConfig {
     private static final Logger logger = LogManager.getLogger();
 
     @Bean
-    public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
+    public ShiroFilterFactoryBean shiroFilter() {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
         // 必须设置 SecurityManager
-        factoryBean.setSecurityManager(securityManager);
+        factoryBean.setSecurityManager(getSecurityManager());
 
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
         factoryBean.setLoginUrl("/login");
@@ -52,6 +58,37 @@ public class ShiroConfig {
         factoryBean.setFilterChainDefinitionMap(definitionMap);
 
         return factoryBean;
+    }
+
+    @Bean
+    public UserAuthorizingRealm userAuthRealm() {
+        UserAuthorizingRealm realm = new UserAuthorizingRealm();
+
+        return realm;
+    }
+
+    @Bean
+    public SecurityManager getSecurityManager() {
+        DefaultSecurityManager securityManager = new DefaultSecurityManager();
+        SecurityUtils.setSecurityManager(securityManager);
+        securityManager.setRealm(userAuthRealm());
+        securityManager.setSessionManager(getSessionManager());
+
+        return securityManager;
+    }
+
+
+    @Bean
+    public SessionManager getSessionManager() {
+        DefaultSessionManager sessionManager = new DefaultSessionManager();
+
+        return sessionManager;
+    }
+
+    @Bean
+    public LifecycleBeanPostProcessor processor() {
+        LifecycleBeanPostProcessor processor = new LifecycleBeanPostProcessor();
+        return processor;
     }
 
 }

@@ -18,4 +18,5 @@ public interface TimeConstants {
     int TIME_1D_EXPIRE = 86400; // 1天
     int TIME_1W_EXPIRE = 604800; // 1星期
     int TIME_10D_EXPIRE = 864000; // 10天
+
 }

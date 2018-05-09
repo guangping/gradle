@@ -26,12 +26,15 @@ ext{
 
 dependencies {
     compile("org.apache.shiro:shiro-core:${shiroVersion}")
-    compile("org.apache.shiro:shiro-web:${shiroVersion}")
+   // compile("org.apache.shiro:shiro-web:${shiroVersion}")
     compile("org.apache.shiro:shiro-event:${shiroVersion}")
     compile("org.apache.shiro:shiro-spring:${shiroVersion}")
 
-    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter')
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 
     /*依赖工程*/
     compile project(':common:common-core')
+    compile project(':common:common-cache')
 }

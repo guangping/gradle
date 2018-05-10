@@ -3,6 +3,7 @@ package io.lance.gradle.common.job.elastic.config;
 import com.dangdang.ddframe.job.api.dataflow.DataflowJob;
 import com.dangdang.ddframe.job.api.simple.SimpleJob;
 import com.dangdang.ddframe.job.config.JobCoreConfiguration;
+import com.dangdang.ddframe.job.config.dataflow.DataflowJobConfiguration;
 import com.dangdang.ddframe.job.config.simple.SimpleJobConfiguration;
 import com.dangdang.ddframe.job.lite.api.JobScheduler;
 import com.dangdang.ddframe.job.lite.config.LiteJobConfiguration;
@@ -10,12 +11,14 @@ import com.dangdang.ddframe.job.lite.spring.api.SpringJobScheduler;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import io.lance.gradle.common.job.elastic.job.MyDataFlowJob;
 import io.lance.gradle.common.job.elastic.job.MyJob;
+import io.lance.gradle.common.job.elastic.job.MyJob2;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
 import java.util.UUID;
 
 /**
@@ -37,18 +40,39 @@ public class SimpleJobConfig {
     }
 
     @Bean
+    public MyJob2 job2() {
+        return new MyJob2();
+    }
+
+    @Bean
     public DataflowJob dataflowJob() {
         return new MyDataFlowJob();
     }
 
-    @Bean(initMethod = "init")
+
+    @PostConstruct
+    public void init(){
+        logger.info("初始化任务");
+        SimpleJob simpleJob=simpleJob();
+        String cron="0/10 * * * * ? *",shardingItemParameters="1=name,2=sex,0=age";
+        int shardingTotalCount=3;
+        new SpringJobScheduler(simpleJob, registryCenter, getLiteJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount, shardingItemParameters)).init();
+
+        SimpleJob job2=job2();
+        new SpringJobScheduler(job2, registryCenter, getLiteJobConfiguration(job2.getClass(), "0/20 * * * * ? *", shardingTotalCount, shardingItemParameters)).init();
+
+        DataflowJob dataflowJob=dataflowJob();
+
+    }
+
+  /*  @Bean(initMethod = "init")
     public JobScheduler simpleJobScheduler(final SimpleJob simpleJob) {
         String cron="0/10 * * * * ? *",shardingItemParameters="1=name,2=sex,0=age";
         int shardingTotalCount=3;
         return new SpringJobScheduler(simpleJob, registryCenter, getLiteJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount, shardingItemParameters));
 
         // return new SpringJobScheduler(simpleJob, regCenter, getLiteJobConfiguration(simpleJob.getClass(), cron, shardingTotalCount, shardingItemParameters), jobEventConfiguration);
-    }
+    }*/
 
     /* 作业配置
      * 作业配置分为3级，分别是JobCoreConfiguration，JobTypeConfiguration和LiteJobConfiguration。
@@ -58,6 +82,12 @@ public class SimpleJobConfig {
     private LiteJobConfiguration getLiteJobConfiguration(final Class<? extends SimpleJob> jobClass, final String cron, final int shardingTotalCount, final String shardingItemParameters) {
         return LiteJobConfiguration.newBuilder(new SimpleJobConfiguration(JobCoreConfiguration.newBuilder(
                 jobClass.getName(), cron, shardingTotalCount).shardingItemParameters(shardingItemParameters).build(), jobClass.getCanonicalName())).overwrite(true).build();
+    }
+
+    private DataflowJobConfiguration getDataflowJobConfiguration(){
+        //DataflowJobConfiguration configuration=new DataflowJobConfiguration();
+
+        return null;
     }
 
     /**

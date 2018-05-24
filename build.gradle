@@ -42,11 +42,11 @@ subprojects {
         }
     }
 
-     configurations {
-         // 所有需要忽略的包定义在此
-         all*.exclude group: 'org.apache.tomcat.embed'
-         all*.exclude group : 'org.springframework.boot',module: 'spring-boot-starter-tomcat'
-     }
+    configurations {
+        // 所有需要忽略的包定义在此
+        all*.exclude group: 'org.apache.tomcat.embed'
+        all*.exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat'
+    }
 
 
 
@@ -59,6 +59,7 @@ subprojects {
         compile("org.apache.commons:commons-lang3:${commonsLang3Version}")
         compile("com.google.guava:guava:${guavaVersion}")
         compile("commons-io:commons-io:${commonsIoVersion}")
+        compile("org.projectlombok:lombok:1.16.20")
 
         /*日志 log4j2*/
         compile(
@@ -76,6 +77,7 @@ subprojects {
                 "com.lmax:disruptor:${disruptorVersion}"
         )
         testCompile("org.testng:testng:${testngVersion}")
+
     }
 }
 

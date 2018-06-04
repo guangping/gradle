@@ -20,12 +20,16 @@ jar {
 
 ext {
     redissonVersion = '3.6.5'
+    xmemcachedVersion='2.4.4'
 }
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
 
     compile("org.redisson:redisson:${redissonVersion}")
     compile("com.github.ben-manes.caffeine:caffeine:2.6.2")
+
+    compile("com.googlecode.xmemcached:xmemcached:${xmemcachedVersion}")
+
     /*依赖工程*/
     compile project(':common:common-core')
 

@@ -2,7 +2,7 @@
 include 'common', 'common:common-core', 'common:common-dao',
         'common:common-web', 'common:common-cache', 'common:common-email',
         'common:common-mq', 'common:common-mongodb', 'common:common-file',
-        'common:common-rabbitmq','common:common-shiro','common:common-job'
+        'common:common-rabbitmq','common:common-shiro','common:common-job','common:kotlin'
 
 /*web*/
 include 'web', 'web:web-ui', 'web:web-app'

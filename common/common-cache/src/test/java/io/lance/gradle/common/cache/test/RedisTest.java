@@ -34,5 +34,28 @@ public class RedisTest extends AbstractTestNGSpringContextTests {
         System.out.println(value);
     }
 
+    public void read() {
+        String key = null;
+        Object value = this.redisCache.get(key);
+        if (null == value) {
+            synchronized (this) {
+                value = this.redisCache.get(key);
+                if (null == value) {
+                    //DB获取
+
+                    this.redisCache.set(key, "");
+                }
+            }
+        }
+    }
+
+    public Object load(String key){
+        return new CacheCallable<Object>() {
+            @Override
+            public Object load() {
+                return null;
+            }
+        };
+    }
 
 }

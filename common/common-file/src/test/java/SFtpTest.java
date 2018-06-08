@@ -1,4 +1,5 @@
 import io.lance.gradle.common.file.service.sftp.impl.SFtpFileServiceImpl;
+import io.lance.gradle.common.file.vo.EbsFile;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,8 +21,19 @@ public class SFtpTest {
     }
 
     @Test
-    public void get(){
-        this.fileService.get("");
+    public void run() {
+        String s = "C:\\\\Users\\\\magua\\\\Desktop\\\\jiagou.jpg";
+        EbsFile ebsFile = fileService.put(s);
+        System.out.println(ebsFile);
+    }
+
+    @Test
+    public void upload() {
+        String s = "C:\\\\Users\\\\magua\\\\Desktop\\\\jiagou.jpg";
+        //this.fileService.put("C:\\Users\\magua\\Desktop\\jiagou.jpg");
+       /* String fileId=FileUtil.getFileId();
+        System.out.println(fileId+","+fileId.length());*/
+        //System.out.println(FilenameUtils.getName(s));
     }
 
 

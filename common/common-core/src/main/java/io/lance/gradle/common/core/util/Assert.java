@@ -21,6 +21,12 @@ public class Assert {
         }
     }
 
+    public static void isBlank(String str, String message) {
+        if (StringUtils.isBlank(str)) {
+            throw new EbsException(message);
+        }
+    }
+
     public static void isNotBlank(String str, String message) {
         if (StringUtils.isNotBlank(str)) {
             throw new EbsException(message);
@@ -41,6 +47,12 @@ public class Assert {
 
     public static void notEmpty(Map<?, ?> map, String message) {
         if (CollectionUtils.isEmpty(map)) {
+            throw new EbsException(message);
+        }
+    }
+
+    public static void is(boolean check, String message) {
+        if (check) {
             throw new EbsException(message);
         }
     }

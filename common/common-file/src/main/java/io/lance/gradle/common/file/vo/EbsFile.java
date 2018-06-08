@@ -9,17 +9,31 @@ import java.io.Serializable;
  */
 public class EbsFile implements Serializable {
 
-    // 文件编码
+    /**
+     * 文件编码
+     */
     private String fileId;
 
-    //文件名称
+    /**
+     * 文件名称
+     */
     private String fileName;
 
-    //大小 字节
+    /**
+     * 大小 字节
+     */
     private long fileSize = 0;
 
-    //文件类型
+    /**
+     * 文件类型
+     */
     private String fileType;
+
+    /**
+     * 文件全路径
+     */
+    private String fullPath;
+
 
     public String getFileId() {
         return fileId;
@@ -53,6 +67,14 @@ public class EbsFile implements Serializable {
         this.fileType = fileType;
     }
 
+    public String getFullPath() {
+        return fullPath;
+    }
+
+    public void setFullPath(String fullPath) {
+        this.fullPath = fullPath;
+    }
+
     @Override
     public String toString() {
         return "EbsFile{" +
@@ -60,6 +82,7 @@ public class EbsFile implements Serializable {
                 ", fileName='" + fileName + '\'' +
                 ", fileSize=" + fileSize +
                 ", fileType='" + fileType + '\'' +
+                ", fullPath='" + fullPath + '\'' +
                 '}';
     }
 }

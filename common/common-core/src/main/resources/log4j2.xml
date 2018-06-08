@@ -27,13 +27,13 @@
     </Appenders>
 
     <Loggers>
-        <logger name="org.springframework" level="debug" additivity="false">
+        <AsyncLogger name="org.springframework" level="debug" additivity="false">
             <AppenderRef ref="stdout"/>
-        </logger>
-        <logger name="org.apache.ibatis" level="debug" additivity="false">
+        </AsyncLogger >
+        <AsyncLogger  name="org.apache.ibatis" level="debug" additivity="false">
             <AppenderRef ref="stdout"/>
             <AppenderRef ref="debug"/>
-        </logger>
+        </AsyncLogger>
         <logger name="io.lance.gradle" level="info" additivity="false">
             <AppenderRef ref="stdout"/>
             <AppenderRef ref="debug"/>
